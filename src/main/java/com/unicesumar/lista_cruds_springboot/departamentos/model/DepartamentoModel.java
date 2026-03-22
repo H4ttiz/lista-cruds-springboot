@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_departamento")
-public class DepartamentosModel {
+public class DepartamentoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +17,10 @@ public class DepartamentosModel {
     @Column(name = "localizacao_departamento")
     private String localizacao;
 
-    public DepartamentosModel() {
+    public DepartamentoModel() {
     }
 
-    public DepartamentosModel(String nome, String localizacao) {
+    public DepartamentoModel(String nome, String localizacao) {
         this.nome = nome;
         this.localizacao = localizacao;
     }
