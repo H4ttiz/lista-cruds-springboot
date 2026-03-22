@@ -1,4 +1,4 @@
-package com.unicesumar.lista_cruds_springboot.cliente.serive;
+package com.unicesumar.lista_cruds_springboot.cliente.servive;
 
 import com.unicesumar.lista_cruds_springboot.cliente.model.ClienteModel;
 import com.unicesumar.lista_cruds_springboot.cliente.repository.ClienteRepository;
