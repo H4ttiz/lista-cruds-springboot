@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProjetoSerive {
+public class ProjetoService {
 
     private final ProjetoRepository repository;
 
-    public ProjetoSerive(ProjetoRepository repository) {
+    public ProjetoService(ProjetoRepository repository) {
         this.repository = repository;
     }
 
