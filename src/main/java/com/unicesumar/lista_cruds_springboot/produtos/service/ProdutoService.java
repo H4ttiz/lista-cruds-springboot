@@ -2,6 +2,7 @@ package com.unicesumar.lista_cruds_springboot.produtos.service;
 
 import com.unicesumar.lista_cruds_springboot.produtos.model.ProdutoModel;
 import com.unicesumar.lista_cruds_springboot.produtos.repository.ProdutoRepository;
+import com.unicesumar.lista_cruds_springboot.tarefas.model.TarefaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,25 +11,27 @@ import java.util.Optional;
 @Service
 public class ProdutoService {
 
-    private final ProdutoRepository produtoRepository;
+    private final ProdutoRepository repository;
 
-    public ProdutoService(ProdutoRepository produtoRepository) {
-        this.produtoRepository = produtoRepository;
+    public ProdutoService(ProdutoRepository repository) {
+        this.repository = repository;
     }
 
-    public ProdutoModel criar(ProdutoModel novoProduto){
-        return produtoRepository.save(novoProduto);
+    public ProdutoModel create(ProdutoModel novoProduto){
+        return repository.save(novoProduto);
     }
 
-    public List<ProdutoModel> listarTodos(){
-        return produtoRepository.findAll();
+    public List<ProdutoModel> findAll(){
+        return repository.findAll();
     }
 
-    public Optional<ProdutoModel> listarPorId(Long id){
-        return produtoRepository.findById(id);
+    public ProdutoModel findById(Long id){
+        return repository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Produto não encontrada"));
     }
 
-    public void deletarProduto(Long id){
-        produtoRepository.deleteById(id);
+    public void deletar(Long id){
+        ProdutoModel dado = findById(id);
+        repository.delete(dado);
     }
 }

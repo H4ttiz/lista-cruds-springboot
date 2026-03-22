@@ -3,6 +3,7 @@ package com.unicesumar.lista_cruds_springboot.livro.service;
 
 import com.unicesumar.lista_cruds_springboot.livro.model.LivroModel;
 import com.unicesumar.lista_cruds_springboot.livro.repository.LivroRepository;
+import com.unicesumar.lista_cruds_springboot.pedido.model.PedidoModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,25 +12,27 @@ import java.util.Optional;
 @Service
 public class LivroService {
 
-    private final LivroRepository livroRepository;
+    private final LivroRepository repository;
 
-    public LivroService(LivroRepository livroRepository) {
-        this.livroRepository = livroRepository;
+    public LivroService(LivroRepository repository) {
+        this.repository = repository;
     }
 
-    public LivroModel criar(LivroModel novoLivro){
-        return livroRepository.save(novoLivro);
+    public LivroModel create(LivroModel novoLivro){
+        return repository.save(novoLivro);
     }
 
-    public List<LivroModel> listarTodos(){
-        return livroRepository.findAll();
+    public List<LivroModel> findAll(){
+        return repository.findAll();
     }
 
-    public Optional<LivroModel> listarPorId(Long id){
-        return livroRepository.findById(id);
+    public LivroModel findById(Long id){
+        return repository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Livro não encontrada"));
     }
 
-    public void deletarLivro(Long id){
-        livroRepository.deleteById(id);
+    public void delete(Long id){
+        LivroModel dado = findById(id);
+        repository.deleteById(id);
     }
 }
