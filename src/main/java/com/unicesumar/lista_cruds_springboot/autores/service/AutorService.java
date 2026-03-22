@@ -2,9 +2,11 @@ package com.unicesumar.lista_cruds_springboot.autores.service;
 
 import com.unicesumar.lista_cruds_springboot.autores.model.AutorModel;
 import com.unicesumar.lista_cruds_springboot.autores.repository.AutorRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AutorService {
 
     private final AutorRepository repository;
